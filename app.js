@@ -1,3 +1,7 @@
+const convertButton = document.querySelector('#convert-button');
+const input = document.querySelector('#number');
+const result = document.querySelector('.convert');
+
 const oneDigit = [
   '',
   'one ',
@@ -49,3 +53,10 @@ function twoDigitConversion(n, s) {
 
   return word;
 }
+
+convertButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  result.style.display = 'flex';
+  result.innerHTML =
+    'Converted number: ' + twoDigitConversion(input.value, 'bu');
+});
