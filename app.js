@@ -38,7 +38,7 @@ const twoDigit = [
   'ninety',
 ];
 
-function twoDigitConversion(n, s) {
+export function twoDigitConversion(n, s) {
   let word = '';
 
   if (n > 19 && n % 10 === 0) {
@@ -56,7 +56,7 @@ function twoDigitConversion(n, s) {
   return word;
 }
 
-function convertToWords(n) {
+export function convertToWords(n) {
   let output = '';
 
   output += twoDigitConversion(parseInt(n / 1000000), 'million ');
