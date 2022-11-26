@@ -54,9 +54,31 @@ function twoDigitConversion(n, s) {
   return word;
 }
 
+function convertToWords(n) {
+  let output = '';
+
+  output += twoDigitConversion(parseInt(n / 1000000), 'million ');
+
+  output += twoDigitConversion(
+    parseInt((n / 100000) % 10),
+    'hundred thousand '
+  );
+
+  output += twoDigitConversion(parseInt((n / 1000) % 100), 'thousand ');
+
+  output += twoDigitConversion(parseInt((n / 100) % 10), 'hundred ');
+
+  if (n > 100 && n % 100 > 0) {
+    output += 'and ';
+  }
+
+  output += twoDigitConversion(parseInt(n % 100), '');
+
+  return output;
+}
+
 convertButton.addEventListener('click', (e) => {
   e.preventDefault();
   result.style.display = 'flex';
-  result.innerHTML =
-    'Converted number: ' + twoDigitConversion(input.value, 'bu');
+  result.innerHTML = 'Converted number: ' + convertToWords(input.value);
 });
