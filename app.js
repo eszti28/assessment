@@ -61,7 +61,6 @@ export function convertToWords(n) {
 
   output += twoDigitConversion(parseInt(n / 1000000), 'million ');
 
-  console.log(n.substring(3, 6) === '000');
   if (n.substring(1, 3) === '00') {
     output += twoDigitConversion(
       parseInt((n / 100000) % 10),
