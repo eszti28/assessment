@@ -41,7 +41,9 @@ const twoDigit = [
 function twoDigitConversion(n, s) {
   let word = '';
 
-  if (n > 19) {
+  if (n > 19 && n % 10 === 0) {
+    word += twoDigit[parseInt(n / 10)];
+  } else if (n > 19 && n % 10 !== 0) {
     word += twoDigit[parseInt(n / 10)] + '-' + oneDigit[n % 10];
   } else {
     word += oneDigit[n];
@@ -59,10 +61,15 @@ function convertToWords(n) {
 
   output += twoDigitConversion(parseInt(n / 1000000), 'million ');
 
-  output += twoDigitConversion(
-    parseInt((n / 100000) % 10),
-    'hundred thousand '
-  );
+  console.log(n.substring(3, 6) === '000');
+  if (n.substring(1, 3) === '00') {
+    output += twoDigitConversion(
+      parseInt((n / 100000) % 10),
+      'hundred thousand '
+    );
+  } else {
+    output += twoDigitConversion(parseInt((n / 100000) % 10), 'hundred ');
+  }
 
   output += twoDigitConversion(parseInt((n / 1000) % 100), 'thousand ');
 
