@@ -38,7 +38,7 @@ const twoDigit = [
   'ninety',
 ];
 
-export function twoDigitConversion(n, s) {
+function twoDigitConversion(n, s) {
   let word = '';
 
   if (n > 19 && n % 10 === 0) {
@@ -56,7 +56,7 @@ export function twoDigitConversion(n, s) {
   return word;
 }
 
-export function convertToWords(n) {
+function convertToWords(n) {
   let output = '';
 
   output += twoDigitConversion(parseInt(n / 1000000), 'million ');
@@ -88,3 +88,5 @@ convertButton.addEventListener('click', (e) => {
   result.style.display = 'flex';
   result.innerHTML = 'Converted number: ' + convertToWords(input.value);
 });
+
+module.exports = convertToWords();
