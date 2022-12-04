@@ -9,6 +9,7 @@ function showUsers(index) {
   fetch(`${BASE_URL}/users`)
     .then((resp) => resp.json())
     .then((json) => {
+      console.log(json);
       for (let i = index; i < index + 10; i++) {
         addDom(json, i);
       }
@@ -56,7 +57,7 @@ prevButton.addEventListener('click', () => {
 });
 
 addButton.addEventListener('click', () => {
-  location.href = 'addForm.html';
+  location.href = 'add-users/addForm.html';
 });
 
 showUsers(0);
