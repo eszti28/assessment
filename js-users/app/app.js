@@ -1,7 +1,8 @@
 const BASE_URL = 'https://assessment-users-backend.herokuapp.com';
-const prevButton = document.querySelector('btn-primary');
-const nextButton = document.querySelector('btn-success');
+const prevButton = document.querySelector('.btn-primary');
+const nextButton = document.querySelector('.btn-success');
 const tbody = document.querySelector('tbody');
+let pageIndex = 0;
 
 function showUsers(index) {
   fetch(`${BASE_URL}/users`)
@@ -25,5 +26,19 @@ function addDom(json, index) {
   }
   tbody.appendChild(tr);
 }
+
+nextButton.addEventListener('click', () => {
+  tbody.replaceChildren();
+  pageIndex += 10;
+  showUsers(pageIndex);
+});
+
+prevButton.addEventListener('click', () => {
+  if (pageIndex > 9) {
+    tbody.replaceChildren();
+    pageIndex -= 10;
+    showUsers(pageIndex);
+  }
+});
 
 showUsers(0);
