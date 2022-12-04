@@ -9,22 +9,34 @@ function showUsers(index) {
   fetch(`${BASE_URL}/users`)
     .then((resp) => resp.json())
     .then((json) => {
-      console.log(json);
       for (let i = index; i < index + 10; i++) {
         addDom(json, i);
       }
+      const allEditBtns = document.querySelectorAll('.edit-btn');
+      allEditBtns.forEach(function (modify) {
+        modify.addEventListener('click', function () {
+          location.href = `update-users/update.html?id=${modify.value}`;
+        });
+      });
     })
     .catch((err) => console.log(err));
 }
 
 function addDom(json, index) {
   const tr = document.createElement('tr');
+  const editBtn = document.createElement('button');
   for (let i = 0; i < 3; i++) {
     const td = document.createElement('td');
     if (i === 0) td.innerText = json[index].first_name;
     if (i === 1) td.innerText = json[index].last_name;
-    if (i === 2) td.innerText = json[index].created_at;
+    if (i === 2) {
+      td.innerText = json[index].created_at;
+      editBtn.innerText = 'Edit';
+      editBtn.value = json[index].id;
+      editBtn.classList = 'btn btn-primary m-1 edit-btn';
+    }
     tr.appendChild(td);
+    tr.appendChild(editBtn);
   }
   tbody.appendChild(tr);
 }
