@@ -1,4 +1,5 @@
 const backButton = document.querySelector('.btn-secondary');
+const homeButton = document.querySelector('#home');
 const submitButton = document.querySelector('.btn-primary');
 const add_URL = 'https://assessment-users-backend.herokuapp.com';
 const inputs = document.querySelectorAll('.form-control');
@@ -21,5 +22,9 @@ submitButton.addEventListener('click', (e) => {
 });
 
 backButton.addEventListener('click', () => {
+  location.href = '../index.html';
+});
+
+home.addEventListener('click', () => {
   location.href = '../index.html';
 });

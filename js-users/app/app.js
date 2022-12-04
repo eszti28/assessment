@@ -1,7 +1,7 @@
 const BASE_URL = 'https://assessment-users-backend.herokuapp.com';
 const prevButton = document.querySelector('.btn-primary');
 const nextButton = document.querySelector('.btn-success');
-const addButton = document.querySelector('.btn-secondary');
+const addButton = document.querySelector('#add');
 const tbody = document.querySelector('tbody');
 let pageIndex = 0;
 
