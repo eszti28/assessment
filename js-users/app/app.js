@@ -9,7 +9,6 @@ function showUsers(index) {
   fetch(`${BASE_URL}/users`)
     .then((resp) => resp.json())
     .then((json) => {
-      console.log(json);
       for (let i = index; i < index + 10; i++) {
         addDom(json, i);
       }
@@ -36,20 +35,26 @@ function addDom(json, index) {
     const td = document.createElement('td');
     if (i === 0) td.innerText = json[index].first_name;
     if (i === 1) td.innerText = json[index].last_name;
-    if (i === 2) td.innerText = json[index].created_at;
+    if (i === 2)
+      td.innerText = new Date(
+        Date.parse(json[index].created_at)
+      ).toLocaleString('hu');
     if (i === 3) {
       td.innerText = 'Edit';
       td.value = json[index].id;
-      td.classList = 'edit-btn';
-      td.style = 'background: red; cursor: pointer; text-align: center;';
+      td.classList = 'edit-btn fw-bold text-primary';
+      td.style = 'cursor: pointer;';
     }
     if (i === 4) {
-      td.innerText = 'activate/lock';
+      json[index].status === 'active'
+        ? (td.innerText = 'Active')
+        : (td.innerText = 'Locked');
       td.value = json[index].status;
       td.id = json[index].id;
-      td.classList = 'status-btn';
-      td.style = 'background: blue; cursor: pointer; text-align: center;';
+      td.classList = 'status-btn fw-bold text-success';
+      td.style = 'color: green; cursor: pointer;';
     }
+    td.classList.add('p-3');
     tr.appendChild(td);
     if (json[index].status === 'locked')
       tr.style.textDecoration = 'line-through';
@@ -58,12 +63,13 @@ function addDom(json, index) {
 }
 
 function activeOrLocked(status, id, statusButton) {
-  let newStatus = '';
   if (status === 'active') {
-    newStatus = 'locked';
+    statusButton.value = 'locked';
+    statusButton.innerText = 'Locked';
     statusButton.parentElement.style.textDecoration = 'line-through';
   } else {
-    newStatus = 'active';
+    statusButton.value = 'active';
+    statusButton.innerText = 'Active';
     statusButton.parentElement.style.textDecoration = 'none';
   }
   fetch(`${BASE_URL}/users/${id}`, {
@@ -72,7 +78,7 @@ function activeOrLocked(status, id, statusButton) {
       'content-type': 'application/json',
     },
     body: JSON.stringify({
-      status: newStatus,
+      status: statusButton.value,
     }),
   }).catch((err) => console.log(err));
 }

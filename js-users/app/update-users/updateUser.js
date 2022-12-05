@@ -1,4 +1,5 @@
 const backButtonTwo = document.querySelector('.btn-secondary');
+const homeButtonTwo = document.querySelector('#home');
 const editButton = document.querySelector('.btn-primary');
 const updateForm = document.querySelector('form');
 const inputsTwo = document.querySelectorAll('.form-control');
@@ -21,5 +22,9 @@ editButton.addEventListener('click', (e) => {
 });
 
 backButtonTwo.addEventListener('click', () => {
+  location.href = '../index.html';
+});
+
+homeButtonTwo.addEventListener('click', () => {
   location.href = '../index.html';
 });

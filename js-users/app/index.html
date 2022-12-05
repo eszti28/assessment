@@ -13,13 +13,19 @@
       crossorigin="anonymous"
     />
   </head>
-  <body>
-    <div
-      class="navbar navbar-expand navbar-dark bg-dark mb-5"
-      style="background-color: red"
-    >
+  <body style="background-color: #f8f8ff">
+    <div class="navbar navbar-expand navbar-dark bg-dark mb-5">
       <div class="container">
-        <a href="#" class="navbar-brand">Users</a>
+        <a href="#" class="navbar-brand">
+          <img
+            src="user.png"
+            width="30"
+            height="30"
+            class="d-inline-block align-top"
+            alt=""
+          />
+          Users</a
+        >
         <ul class="navbar-nav">
           <li class="nav-item">
             <a href="#" class="nav-link active" aria-current="page">Home</a>
@@ -31,20 +37,22 @@
       </div>
     </div>
     <div class="container">
-      <table class="table table-striped table-hover">
-        <thead>
+      <table class="table bg-white table-hover rounded-2">
+        <thead class="table-dark">
           <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Created</th>
-            <th>Edit</th>
-            <th>Status</th>
+            <th class="p-3">First Name</th>
+            <th class="p-3">Last Name</th>
+            <th class="p-3">Created</th>
+            <th class="p-3">Edit</th>
+            <th class="p-3">Status</th>
           </tr>
         </thead>
         <tbody class="table-group-divider"></tbody>
       </table>
-      <button class="btn btn-primary">Prev</button>
-      <button class="btn btn-success">Next</button>
+      <div class="buttons d-flex justify-content-between mb-3">
+        <button class="btn btn-primary">Prev</button>
+        <button class="btn btn-success">Next</button>
+      </div>
     </div>
     <script src="app.js"></script>
     <script
