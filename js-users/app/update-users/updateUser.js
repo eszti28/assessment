@@ -4,6 +4,7 @@ const editButton = document.querySelector('.btn-primary');
 const updateForm = document.querySelector('form');
 const inputsTwo = document.querySelectorAll('.form-control');
 const edit_URL = 'https://assessment-users-backend.herokuapp.com';
+const editAlert = document.querySelector('.alert');
 
 editButton.addEventListener('click', (e) => {
   e.preventDefault();
@@ -18,7 +19,13 @@ editButton.addEventListener('click', (e) => {
       first_name: inputsTwo[0].value,
       last_name: inputsTwo[1].value,
     }),
-  }).catch((err) => console.log(err));
+  })
+    .then((resp) => {
+      if (resp.status === 204) {
+        editAlert.style = 'display: show';
+      }
+    })
+    .catch((err) => console.log(err));
 });
 
 backButtonTwo.addEventListener('click', () => {

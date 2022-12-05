@@ -4,6 +4,7 @@ const submitButton = document.querySelector('.btn-primary');
 const add_URL = 'https://assessment-users-backend.herokuapp.com';
 const inputs = document.querySelectorAll('.form-control');
 const form = document.querySelector('form');
+const alertCard = document.querySelector('.alert');
 
 submitButton.addEventListener('click', (e) => {
   e.preventDefault();
@@ -18,7 +19,13 @@ submitButton.addEventListener('click', (e) => {
       last_name: inputs[1].value,
       status: 'active',
     }),
-  }).catch((err) => console.log(err));
+  })
+    .then((resp) => {
+      if (resp.status === 201) {
+        alertCard.style = 'display: show';
+      }
+    })
+    .catch((err) => console.log(err));
 });
 
 backButton.addEventListener('click', () => {
